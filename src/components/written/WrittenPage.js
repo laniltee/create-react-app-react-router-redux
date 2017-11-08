@@ -1,4 +1,5 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
 
 import * as questionsActions from '../../actions/questionsActions';
@@ -23,7 +24,7 @@ class WrittenPage extends React.Component {
         if(value === null || value === ""){
             return;
         }
-        var question = this.state.question;
+        let question = this.state.question;
         question[name] = value;
         this.setState({
             question
@@ -32,7 +33,7 @@ class WrittenPage extends React.Component {
 
     createQuestion(event) {
         event.preventDefault();
-        this.props.dispatch(questionsActions.createQuestion(this.state.question))
+        this.props.actions.createQuestion(this.state.question);
     }
 
     mapQuestionToTableRow(question, index) {
@@ -99,10 +100,21 @@ class WrittenPage extends React.Component {
     }
 }
 
+WrittenPage.PropTypes = {
+    questions: PropTypes.array.isRequired,
+    actions: PropTypes.object.isRequired
+}
+
 function mapStateToProps(state, ownProps) {
     return {
         questions: state.questions
     };
 }
 
-export default connect(mapStateToProps)(WrittenPage);
+function mapDispatchToProps(dispatch){
+    return {
+        actions: bindActionCreators(questionsActions, dispatch)
+    };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WrittenPage);

@@ -7,8 +7,12 @@ class App extends React.Component {
                 <h1>Welcome to My React Tutorial</h1>
                 <hr/>
                 <a href={"/"}>Home</a>
+                |
                 <a href={"mcq"}>MCQ</a>
+                |
                 <a href={"written"}>Written</a>
+                |
+                <a href={"supervisors"}>Supervisors</a>
                 <div className={"appChildren"}>
                     {this.props.children}
                 </div>

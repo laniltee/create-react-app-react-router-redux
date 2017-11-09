@@ -21,7 +21,7 @@ class WrittenPage extends React.Component {
     handleTextChange(event) {
         const name = event.target.name;
         const value = event.target.value;
-        if(value === null || value === ""){
+        if (value === null || value === "") {
             return;
         }
         let question = this.state.question;
@@ -34,6 +34,11 @@ class WrittenPage extends React.Component {
     createQuestion(event) {
         event.preventDefault();
         this.props.actions.createQuestion(this.state.question);
+        const question = {
+            text: "",
+            answer: ""
+        };
+        this.setState({question});
     }
 
     mapQuestionToTableRow(question, index) {
@@ -111,7 +116,7 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
         actions: bindActionCreators(questionsActions, dispatch)
     };

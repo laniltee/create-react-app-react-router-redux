@@ -1,7 +1,7 @@
-import * as types from '../actions/actionTypes'
+import * as types from '../actions/actionTypes';
 
 export default function questionsReducer(state = [], action) {
-    switch(action.type){
+    switch (action.type) {
         case types.CREATE_QUESTION:
             return [
                 ...state,
